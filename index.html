@@ -288,11 +288,18 @@ footer{padding:30px 8%;text-align:center;border-top:1px solid var(--border);colo
           <a href="mailto:kanisettisravanthi@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
-      <form class="form glass reveal" id="contactForm">
-        <div class="form-grp"><label>Name</label><input type="text" required name="name" placeholder="Your name" autocomplete="name" /></div>
+      <form class="form glass reveal" action="https://formsubmit.co/kanisettisravanthi@gmail.com" method="POST">
+        <div class="form-grp">
+             <label>Name</label>
+             <input type="text" required name="name" placeholder="Your name" autocomplete="name" /></div>
         <div class="form-grp"><label>Email</label><input type="email" required name="email" placeholder="you@example.com" autocomplete="email" /></div>
         <div class="form-grp"><label>Subject</label><input type="text" required name="subject" placeholder="What's it about?" /></div>
         <div class="form-grp"><label>Message</label><textarea required name="message" placeholder="Tell me about your project..."></textarea></div>
+        <input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_subject" value="New Portfolio Message">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next"
+value="https://sravanthi-kanisetti.github.io/Sravanthi_Portfolio/">
         <button type="submit" class="btn btn-primary send-btn">Send Message <i class="fas fa-paper-plane"></i></button>
       </form>
     </div>
@@ -386,13 +393,7 @@ document.getElementById('projGrid').innerHTML=PROJECTS.map(p=>`
     <a class="btn btn-ghost" href="${p.g}" target="_blank" rel="noopener"><i class="fab fa-github"></i> View on GitHub</a>
   </article>`).join('');
 document.querySelectorAll('.proj.reveal').forEach(el=>io.observe(el));
-// Contact form
-document.getElementById('contactForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const btn=e.target.querySelector('button');
-  const orig=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Message Sent!';btn.disabled=true;
-  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;e.target.reset();},2500);
-});
+
 // Particles
 (function(){
   const c=document.getElementById('particles'),x=c.getContext('2d');
