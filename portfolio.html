@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sravanthi Kanisetti — Data Analyst Portfolio</title>
+<meta name="description" content="Data Analyst portfolio of Sravanthi Kanisetti — SQL, Python, Power BI, Tableau, BigQuery, Looker Studio." />
+<meta
+name="keywords"
+content="Data Analyst, SQL, Power BI, Tableau, Python, Portfolio">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{
+  --bg:#0a0e27; --bg-2:#0d1430; --primary:#4f8ef7; --cyan:#00d4ff;
+  --purple:#8a5cf6; --white:#eaf0ff; --muted:#9aa6c7;
+  --glass:rgba(255,255,255,.05); --border:rgba(255,255,255,.1);
+  --grad:linear-gradient(135deg,#4f8ef7 0%,#00d4ff 50%,#8a5cf6 100%);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.2}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+section{padding:100px 8%;position:relative}
+.container{max-width:1200px;margin:0 auto}
+.section-title{font-size:clamp(2rem,4vw,3rem);text-align:center;margin-bottom:14px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.section-sub{text-align:center;color:var(--muted);margin-bottom:60px;font-size:1.05rem}
+.glass{background:var(--glass);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:18px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:50px;font-weight:600;cursor:pointer;border:none;font-size:.95rem;transition:.3s;font-family:inherit}
+.btn-primary{background:var(--grad);color:#fff;box-shadow:0 8px 30px rgba(79,142,247,.4)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,212,255,.6)}
+.btn-ghost{background:transparent;color:var(--white);border:1px solid var(--border)}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);transform:translateY(-3px)}
+/* Loader */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:grid;place-items:center;transition:opacity .6s,visibility .6s}
+#loader.hidden{opacity:0;visibility:hidden}
+.loader-logo{width:80px;height:80px;border-radius:50%;border:3px solid transparent;border-top-color:var(--cyan);border-right-color:var(--primary);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Navbar */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 8%;display:flex;justify-content:space-between;align-items:center;background:rgba(10,14,39,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:.3s}
+.nav.scrolled{padding:12px 8%;background:rgba(10,14,39,.9)}
+.logo{font-family:'Space Grotesk';font-weight:700;font-size:1.4rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{position:relative;color:var(--muted);font-weight:500;font-size:.95rem;transition:.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:2px;background:var(--grad);border-radius:2px}
+.hamburger{display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer}
+/* Hero */
+#hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding-top:120px}
+#particles{position:absolute;inset:0;z-index:0}
+.hero-bg{position:absolute;inset:0;background:
+  radial-gradient(600px circle at 20% 30%, rgba(79,142,247,.25), transparent 60%),
+  radial-gradient(500px circle at 80% 70%, rgba(0,212,255,.2), transparent 60%),
+  radial-gradient(400px circle at 50% 100%, rgba(138,92,246,.2), transparent 60%);z-index:0}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-greet{color:var(--cyan);letter-spacing:4px;font-size:.9rem;text-transform:uppercase;margin-bottom:18px}
+.hero-name{font-size:clamp(2.5rem,7vw,5.5rem);line-height:1.05;margin-bottom:18px}
+.hero-name span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.typewriter{font-family:'Space Grotesk';font-size:clamp(1.1rem,2.5vw,1.6rem);color:var(--muted);margin-bottom:14px;min-height:2.2rem}
+.typewriter .type-text{color:var(--cyan);border-right:2px solid var(--cyan);padding-right:4px;animation:caret 1s step-end infinite}
+@keyframes caret{50%{border-color:transparent}}
+.hero-tags{color:var(--muted);max-width:640px;margin:0 auto 36px}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.float-icon{position:absolute;color:rgba(79,142,247,.4);font-size:2rem;animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-25px) rotate(8deg)}}
+/* About */
+.about-grid{display:grid;grid-template-columns:340px 1fr;gap:60px;align-items:center}
+.photo-wrap{position:relative;width:280px;height:280px;margin:auto}
+.photo-wrap::before{content:'';position:absolute;inset:-6px;border-radius:50%;background:var(--grad);filter:blur(20px);opacity:.7;animation:glow 3s ease-in-out infinite alternate}
+.photo-wrap::after{content:'';position:absolute;inset:-3px;border-radius:50%;background:var(--grad);z-index:1}
+@keyframes glow{from{opacity:.5}to{opacity:.9}}
+.photo-wrap img{position:relative;z-index:2;width:100%;height:100%;border-radius:50%;object-fit:cover;border:4px solid var(--bg)}
+.about-bio{color:var(--muted);font-size:1.05rem;margin-bottom:28px}
+.about-bio strong{color:var(--white)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:30px}
+.stat{padding:24px 16px;text-align:center}
+.stat-num{font-family:'Space Grotesk';font-size:2rem;font-weight:700;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stat-lbl{color:var(--muted);font-size:.85rem;margin-top:6px}
+.do-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;margin-top:60px}
+.do-card{padding:26px 20px;text-align:center;transition:.3s}
+.do-card:hover{transform:translateY(-6px);border-color:var(--cyan)}
+.do-card i{font-size:1.8rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:12px}
+.do-card h4{font-size:1rem}
+/* Skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.skill{margin-bottom:22px}
+.skill-head{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.95rem}
+.skill-bar{height:8px;background:rgba(255,255,255,.06);border-radius:50px;overflow:hidden}
+.skill-fill{height:100%;background:var(--grad);border-radius:50px;width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1);box-shadow:0 0 12px rgba(0,212,255,.6)}
+.tools{display:flex;flex-wrap:wrap;gap:14px}
+.tool{padding:12px 20px;border-radius:50px;display:flex;align-items:center;gap:10px;font-size:.9rem;transition:.3s;cursor:default}
+.tool:hover{transform:translateY(-4px);border-color:var(--cyan);color:var(--cyan)}
+.tool i{color:var(--cyan)}
+/* Projects */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:26px}
+.proj{padding:28px;transition:.4s;position:relative;overflow:hidden}
+.proj::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.4s}
+.proj:hover{transform:translateY(-8px);border-color:rgba(0,212,255,.4)}
+.proj:hover::before{transform:scaleX(1)}
+.proj-icon{width:50px;height:50px;border-radius:12px;display:grid;place-items:center;background:rgba(79,142,247,.15);color:var(--cyan);font-size:1.3rem;margin-bottom:18px}
+.proj h3{font-size:1.2rem;margin-bottom:10px}
+.proj-desc{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tag{padding:5px 12px;border-radius:50px;background:rgba(79,142,247,.12);color:var(--cyan);font-size:.75rem;font-weight:500}
+.proj a.btn{padding:10px 18px;font-size:.85rem}
+/* Certs */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.cert{padding:24px;display:flex;gap:16px;align-items:center;transition:.3s}
+.cert:hover{transform:translateY(-5px);border-color:var(--cyan)}
+.cert-badge{flex-shrink:0;width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:1.4rem}
+.cert h4{font-size:.95rem;margin-bottom:4px}
+.cert p{font-size:.78rem;color:var(--muted)}
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:50px}
+.contact-info h3{margin-bottom:18px;font-size:1.5rem}
+.contact-info p{color:var(--muted);margin-bottom:30px}
+.info-item{display:flex;gap:14px;align-items:center;margin-bottom:18px;color:var(--muted)}
+.info-item i{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(79,142,247,.15);color:var(--cyan)}
+.socials{display:flex;gap:14px;margin-top:30px}
+.socials a{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;background:var(--glass);border:1px solid var(--border);color:var(--white);transition:.3s}
+.socials a:hover{background:var(--grad);transform:translateY(-4px) rotate(-5deg);border-color:transparent}
+.form{padding:34px}
+.form-grp{margin-bottom:20px}
+.form-grp label{display:block;font-size:.85rem;margin-bottom:8px;color:var(--muted)}
+.form-grp input,.form-grp textarea{width:100%;padding:14px 16px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;color:var(--white);font-family:inherit;font-size:.95rem;transition:.3s;outline:none}
+.form-grp input:focus,.form-grp textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(0,212,255,.15);background:rgba(0,212,255,.04)}
+.form-grp textarea{resize:vertical;min-height:120px}
+.send-btn{width:100%;justify-content:center;position:relative;overflow:hidden}
+.send-btn i{transition:.3s}
+.send-btn:hover i{transform:translateX(6px)}
+/* Footer */
+footer{padding:30px 8%;text-align:center;border-top:1px solid var(--border);color:var(--muted);font-size:.9rem}
+/* Back to top */
+#topBtn{position:fixed;right:25px;bottom:25px;width:48px;height:48px;border-radius:50%;background:var(--grad);color:#fff;border:none;cursor:pointer;opacity:0;visibility:hidden;transition:.3s;z-index:50;box-shadow:0 8px 25px rgba(0,212,255,.4)}
+#topBtn.show{opacity:1;visibility:visible}
+#topBtn:hover{transform:translateY(-4px)}
+/* Reveal */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s}
+.reveal.in{opacity:1;transform:none}
+/* Responsive */
+@media(max-width:900px){
+  section{padding:80px 6%}
+  .nav{padding:14px 6%}
+  .nav-links{position:fixed;top:0;right:-100%;height:100vh;width:75%;flex-direction:column;background:rgba(10,14,39,.98);backdrop-filter:blur(20px);padding:100px 30px;gap:24px;transition:.4s;border-left:1px solid var(--border)}
+  .nav-links.open{right:0}
+  .hamburger{display:block;z-index:101}
+  .about-grid,.skills-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+<div id="loader"><div class="loader-logo"></div></div>
+<nav class="nav" id="nav">
+  <a href="#hero" class="logo">SK<span style="color:var(--cyan)">.</span></a>
+  <ul class="nav-links" id="navLinks" aria-label="Main Navigation">
+    <li><a href="#hero" class="active">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><i class="fas fa-bars"></i></button>
+</nav>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <canvas id="particles"></canvas>
+  <i class="fas fa-chart-line float-icon" style="top:18%;left:8%;animation-delay:0s"></i>
+  <i class="fas fa-database float-icon" style="top:28%;right:10%;animation-delay:1.5s"></i>
+  <i class="fas fa-chart-pie float-icon" style="bottom:22%;left:12%;animation-delay:3s"></i>
+  <i class="fas fa-chart-bar float-icon" style="bottom:30%;right:14%;animation-delay:4.5s"></i>
+  <i class="fas fa-table float-icon" style="top:48%;left:5%;animation-delay:2s"></i>
+  <i class="fas fa-code float-icon" style="top:55%;right:6%;animation-delay:3.5s"></i>
+  <div class="hero-content">
+    <p class="hero-greet">Hello, I'm</p>
+    <h1 class="hero-name">Sravanthi <span>Kanisetti</span></h1>
+    <p class="typewriter">I'm a <span class="type-text" id="typeText"></span></p>
+    <p class="hero-tags">SQL • Python • Power BI • Tableau • BigQuery • Looker Studio<br>Turning raw data into business decisions.</p>
+    <div class="hero-btns">
+      <button class="btn btn-primary" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"><i class="fas fa-eye"></i> View My Work</button>
+      <button class="btn btn-ghost" id="downloadResume"><i class="fas fa-download"></i> Download Resume</button>
+    </div>
+  </div>
+</section>
+<section id="about">
+  <h2 class="section-title reveal">About Me</h2>
+  <p class="section-sub reveal">A peek behind the dashboards.</p>
+  <div class="container">
+    <div class="about-grid reveal">
+      <div class="photo-wrap">
+        <img src="profile.jpeg" alt="Sravanthi Kanisetti" loading="lazy" />
+      </div>
+      <div>
+        <p class="about-bio">I'm a <strong>Data Analyst</strong> working at the intersection of data, insights, and decision-making — skilled in <strong>SQL, Power BI, Tableau, and Excel</strong>. I bring a structured approach to exploring data, uncovering patterns, and presenting them through clear, intuitive dashboards. I combine analytical thinking with problem-solving, backed by a solid foundation in Data Structures and Algorithms.</p>
+        <p class="about-bio"><i class="fas fa-graduation-cap" style="color:var(--cyan)"></i> &nbsp;B.Tech, Computer Science & Cyber Security · Vignan's Institute of Information Technology (2027)</p>
+        <p class="about-bio"><i class="fas fa-map-marker-alt" style="color:var(--cyan)"></i> &nbsp;Visakhapatnam, Andhra Pradesh, India</p>
+        <div class="stats">
+          <div class="stat glass"><div class="stat-num" data-count="7">0</div><div class="stat-lbl">Projects Completed</div></div>
+          <div class="stat glass"><div class="stat-num" data-count="100000" data-suffix="+">0</div><div class="stat-lbl">Records Analyzed</div></div>
+          <div class="stat glass"><div class="stat-num" data-count="15" data-suffix="+">0</div><div class="stat-lbl">Dashboards Built</div></div>
+          <div class="stat glass"><div class="stat-num" data-count="6" data-suffix="+">0</div><div class="stat-lbl">Tools Mastered</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="do-grid">
+      <div class="do-card glass reveal"><i class="fas fa-broom"></i><h4>Data Cleaning</h4></div>
+      <div class="do-card glass reveal"><i class="fas fa-magnifying-glass-chart"></i><h4>Data Analysis</h4></div>
+      <div class="do-card glass reveal"><i class="fas fa-chart-column"></i><h4>Data Visualization</h4></div>
+      <div class="do-card glass reveal"><i class="fas fa-table-columns"></i><h4>Dashboarding</h4></div>
+      <div class="do-card glass reveal"><i class="fas fa-lightbulb"></i><h4>Generating Insights</h4></div>
+      <div class="do-card glass reveal"><i class="fas fa-book-open"></i><h4>Story Telling</h4></div>
+    </div>
+  </div>
+</section>
+<section id="skills">
+  <h2 class="section-title reveal">Skills & Tools</h2>
+  <p class="section-sub reveal">The toolkit I use to ship insights.</p>
+  <div class="container">
+    <div class="skills-grid">
+      <div class="reveal">
+        <h3 style="margin-bottom:24px;font-size:1.3rem">Technical Skills</h3>
+        <div class="skill"><div class="skill-head"><span>SQL</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Python (Pandas, NumPy, Matplotlib)</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-w="85"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Power BI</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Tableau</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-w="95"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Excel / Advanced Excel</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Data Storytelling</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>BigQuery</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+        <div class="skill"><div class="skill-head"><span>Looker Studio</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-w="90"></div></div></div>
+      </div>
+      <div class="reveal">
+        <h3 style="margin-bottom:24px;font-size:1.3rem">Tools I Use</h3>
+        <div class="tools">
+          <span class="tool glass"><i class="fas fa-database"></i>MS SQL Server</span>
+          <span class="tool glass"><i class="fab fa-python"></i>Python</span>
+          <span class="tool glass"><i class="fas fa-table"></i>Pandas</span>
+          <span class="tool glass"><i class="fas fa-chart-bar"></i>Power BI</span>
+          <span class="tool glass"><i class="fas fa-chart-pie"></i>Tableau</span>
+          <span class="tool glass"><i class="fas fa-file-excel"></i>Excel</span>
+          <span class="tool glass"><i class="fab fa-google"></i>BigQuery</span>
+          <span class="tool glass"><i class="fas fa-chart-line"></i>Looker Studio</span>
+          <span class="tool glass"><i class="fas fa-book"></i>Jupyter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="projects">
+  <h2 class="section-title reveal">Featured Projects</h2>
+  <p class="section-sub reveal">End-to-end data work — from raw CSV to executive dashboard.</p>
+  <div class="container">
+    <div class="proj-grid" id="projGrid"></div>
+  </div>
+</section>
+<section id="certs">
+  <h2 class="section-title reveal">Certifications</h2>
+  <p class="section-sub reveal">Credentials backing the craft.</p>
+  <div class="container">
+    <div class="cert-grid">
+      <div class="cert glass reveal"><div class="cert-badge"><i class="fas fa-database"></i></div><div><h4>Data Fundamentals</h4><p>IBM</p></div></div>
+      <div class="cert glass reveal"><div class="cert-badge"><i class="fas fa-chart-line"></i></div><div><h4>Data Analytics Job Simulation</h4><p>Deloitte</p></div></div>
+      <div class="cert glass reveal"><div class="cert-badge"><i class="fas fa-cubes"></i></div><div><h4>Master Data Management for Beginners</h4><p>TCS iON</p></div></div>
+      <div class="cert glass reveal"><div class="cert-badge"><i class="fas fa-server"></i></div><div><h4>SQL & Relational Databases 101</h4><p>IBM</p></div></div>
+      <div class="cert glass reveal"><div class="cert-badge"><i class="fas fa-code"></i></div><div><h4>SQL</h4><p>HackerRank</p></div></div>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <h2 class="section-title reveal">Get In Touch</h2>
+  <p class="section-sub reveal">Have a project, role, or dataset to discuss? Let's talk.</p>
+  <div class="container">
+    <div class="contact-grid">
+      <div class="reveal contact-info">
+        <h3>Let's build something insightful.</h3>
+        <p>I'm open to internships, freelance analytics projects, and full-time data analyst roles.</p>
+        <div class="info-item"><i class="fas fa-envelope"></i><span>kanisettisravanthi@gmail.com</span></div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><span>Visakhapatnam, Andhra Pradesh</span></div>
+        <div class="info-item"><i class="fas fa-graduation-cap"></i><span>Vignan's IIT — B.Tech CSE & CyberSec</span></div>
+        <div class="socials">
+          <a href="https://www.linkedin.com/in/sravanthi-kanisetti-116a542b6/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Sravanthi-Kanisetti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="mailto:kanisettisravanthi@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+      <form class="form glass reveal" id="contactForm">
+        <div class="form-grp"><label>Name</label><input type="text" required name="name" placeholder="Your name" autocomplete="name" /></div>
+        <div class="form-grp"><label>Email</label><input type="email" required name="email" placeholder="you@example.com" autocomplete="email" /></div>
+        <div class="form-grp"><label>Subject</label><input type="text" required name="subject" placeholder="What's it about?" /></div>
+        <div class="form-grp"><label>Message</label><textarea required name="message" placeholder="Tell me about your project..."></textarea></div>
+        <button type="submit" class="btn btn-primary send-btn">Send Message <i class="fas fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </div>
+</section>
+<footer>© 2026 Sravanthi Kanisetti · Crafted with data, design & ☕</footer>
+<button id="topBtn" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+<script>
+const RESUME_URL="./Sravanthi_Kanisetti_Resume.pdf";
+// Loader
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),500));
+// Nav scroll
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  document.getElementById('topBtn').classList.toggle('show',window.scrollY>400);
+});
+// Hamburger
+const ham=document.getElementById('hamburger'),navLinks=document.getElementById('navLinks');
+ham.addEventListener('click',()=>{
+  navLinks.classList.toggle('open');
+  ham.innerHTML=navLinks.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+});
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+  navLinks.classList.remove('open');ham.innerHTML='<i class="fas fa-bars"></i>';
+}));
+// Active link
+const sections=document.querySelectorAll('section');
+window.addEventListener('scroll',()=>{
+  let c='hero';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-120)c=s.id;});
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+c);
+  });
+});
+// Top btn
+document.getElementById('topBtn').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+// Typewriter
+const words=["Data Analyst","SQL Developer","Dashboard Builder","Insight Generator"];
+let wi=0,ci=0,del=false;
+(function type(){
+  const el=document.getElementById('typeText'),w=words[wi];
+  el.textContent=w.substring(0,ci);
+  if(!del && ci<w.length){ci++;setTimeout(type,90);}
+  else if(del && ci>0){ci--;setTimeout(type,45);}
+  else{del=!del;if(!del)wi=(wi+1)%words.length;setTimeout(type,del?1400:300);}
+})();
+// Resume download
+document.getElementById('downloadResume').addEventListener('click',async()=>{
+  try{
+    const r=await fetch(RESUME_URL);const b=await r.blob();
+    const url=URL.createObjectURL(b);
+    const a=document.createElement('a');a.href=url;a.download='Sravanthi_Kanisetti_Resume.pdf';
+    document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+    try{localStorage.setItem('resumeDownloadedAt',new Date().toISOString());}catch(e){}
+  }catch(e){window.open(RESUME_URL,'_blank');}
+});
+// Reveal
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+// Stat counters
+const sio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;sio.unobserve(e.target);
+  const el=e.target,target=+el.dataset.count,suf=el.dataset.suffix||'';
+  const dur=1800,start=performance.now();
+  function tick(t){const p=Math.min((t-start)/dur,1);const v=Math.floor(p*target);
+    el.textContent=v.toLocaleString()+(p===1?suf:'');if(p<1)requestAnimationFrame(tick);}
+  requestAnimationFrame(tick);
+}),{threshold:.4});
+document.querySelectorAll('.stat-num').forEach(el=>sio.observe(el));
+// Skill bars
+const kio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;kio.unobserve(e.target);
+  e.target.style.width=e.target.dataset.w+'%';
+}),{threshold:.3});
+document.querySelectorAll('.skill-fill').forEach(el=>kio.observe(el));
+// Projects
+const PROJECTS=[
+  {t:"AppOcean — Kimball DW for App Store Intelligence",i:"fa-warehouse",d:"Built a Kimball star-schema warehouse over 120,500+ events from 6 CSVs with full ETL via stored procedures (TRY-CATCH + execution timing). Resolved 7 data-quality issues across 14 columns and shipped 6 business-focused data marts with LAG, DENSE_RANK & nested window analytics.",tags:["SQL Server","ETL","Data Warehousing","Kimball"],g:"https://github.com/Sravanthi-Kanisetti/AppOcean"},
+  {t:"Silent Drift — Customer Churn Detection",i:"fa-user-slash",d:"Processed 89,075 customer records to uncover key churn drivers and surface ₹9.84M of at-risk revenue. Multi-page Looker dashboard revealed long-inactive customers are 3× more likely to churn.",tags:["SQL","BigQuery","Looker Studio"],g:"https://github.com/Sravanthi-Kanisetti/Silent-Drift"},
+  {t:"Decoding the Green Squares — GitHub Bot Detection",i:"fa-user-secret",d:"Cleaned a 105k-row dataset (72k+ missing values, 5 date formats) into 101,807 analysis-ready profiles. Engineered a 7-signal suspicion score flagging 34% of profiles; 18 visualizations across 8 chart types.",tags:["Python","Pandas","Matplotlib","Seaborn"],g:"https://github.com/Sravanthi-Kanisetti/Decoding-the-Green-Squares"},
+  {t:"InsightLens — Medallion Data Warehouse",i:"fa-layer-group",d:"Bronze–Silver–Gold warehouse on SQL Server integrating ERP & CRM data (1,000+ records). Star schema (1 fact + 5 dimensions) and 25+ optimized SQL queries improving query performance by 30%+.",tags:["SQL Server","ETL","Medallion","Star Schema"],g:"https://github.com/Sravanthi-Kanisetti/sql-data-warehouse-project"},
+  {t:"SalesFlow — Tableau Sales Dashboard",i:"fa-chart-pie",d:"Interactive Tableau dashboard tracking Total Sales ($733K), Profit ($93K), top customers & loss-making subcategories across 1,000+ records. Revealed 20%+ YoY growth and top 10 profit contributors.",tags:["Tableau","SQL","KPI Design"],g:"https://github.com/Sravanthi-Kanisetti/Tableau-End-To-End-Projects/tree/main"},
+  {t:"HireScope — Job Market Analysis",i:"fa-briefcase",d:"4-page Power BI dashboard analyzing 10,000+ job listings to derive a step-by-step career strategy. Identified SQL as the most in-demand skill and AI/ML as the highest hiring industry.",tags:["Power BI","Data Storytelling"],g:"https://github.com/Sravanthi-Kanisetti/Power-BI"}
+];
+document.getElementById('projGrid').innerHTML=PROJECTS.map(p=>`
+  <article class="proj glass reveal">
+    <div class="proj-icon"><i class="fas ${p.i}"></i></div>
+    <h3>${p.t}</h3>
+    <p class="proj-desc">${p.d}</p>
+    <div class="proj-tags">${p.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    <a class="btn btn-ghost" href="${p.g}" target="_blank" rel="noopener"><i class="fab fa-github"></i> View on GitHub</a>
+  </article>`).join('');
+document.querySelectorAll('.proj.reveal').forEach(el=>io.observe(el));
+// Contact form
+document.getElementById('contactForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  const orig=btn.innerHTML;btn.innerHTML='<i class="fas fa-check"></i> Message Sent!';btn.disabled=true;
+  setTimeout(()=>{btn.innerHTML=orig;btn.disabled=false;e.target.reset();},2500);
+});
+// Particles
+(function(){
+  const c=document.getElementById('particles'),x=c.getContext('2d');
+  let w,h,parts;
+  function size(){w=c.width=window.innerWidth;h=c.height=document.getElementById('hero').offsetHeight;}
+  size();window.addEventListener('resize',size);
+  parts=Array.from({length:60},()=>({x:Math.random()*w,y:Math.random()*h,r:Math.random()*1.8+.4,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4}));
+  function draw(){x.clearRect(0,0,w,h);
+    parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>w)p.vx*=-1;if(p.y<0||p.y>h)p.vy*=-1;
+      x.fillStyle='rgba(0,212,255,.7)';x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill();});
+    for(let i=0;i<parts.length;i++)for(let j=i+1;j<parts.length;j++){
+      const a=parts[i],b=parts[j],d=Math.hypot(a.x-b.x,a.y-b.y);
+      if(d<120){x.strokeStyle='rgba(79,142,247,'+(1-d/120)*.25+')';x.lineWidth=.6;x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.stroke();}
+    }
+    requestAnimationFrame(draw);
+  }draw();
+})();
+</script>
+</body>
+</html>
